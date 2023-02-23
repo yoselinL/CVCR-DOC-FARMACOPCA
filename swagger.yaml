@@ -672,7 +672,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaProductosfavoritosCreateResponse"
-                
+
   /api/productos-favoritos/{id}:
     delete:
       tags:
@@ -766,9 +766,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaTiempoapoyoResponse"
-
+  
+  components:
   schemas:
-    cadenaPaisesResponse:
+    cadenaCooperativasResponse:
       type: object
       properties:
         resultado:
@@ -776,50 +777,25 @@ paths:
         mensaje:
           type: string
         data:
-          type: array
-          items:
-            type: object
-            properties:
-              codigo:
-                type: string
-              nombre:
-                type: string
-              icono:
-                type: string
-
+          type: object
+          properties:
+            codigo:
+              type: string
+            nombre:
+              type: string
       additionalProperties: false
-
-    cadenaEmpresaResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              codigo:
-                type: string
-              nombre:
-                type: string
-      additionalProperties: false
-
-    cadenaEmpresaCodigoRequest:
+    cadenaCooperativaCodigoRequest:
       type: object
       required:
         - codigo
-        - idEmpresa
+        - codigoCooperativa
       properties:
         codigo:
           type: string
-        idEmpresa:
-          type: string
+        codigoCooperativa:
+          type: number
       additionalProperties: false
-
-    cadenaEmpresaCodigoResponse:
+    cadenaCooperativaCodigoResponse:
       type: object
       properties:
         resultado:
@@ -834,22 +810,17 @@ paths:
             mensaje:
               type: string
       additionalProperties: false
-
     cadenaAutenticarRequest:
       type: object
       required:
         - email
         - password
-        - pais
       properties:
         email:
           type: string
         password:
           type: string
-        idPais:
-          type: string          
       additionalProperties: false
-
     cadenaAutenticarResponse:
       type: object
       properties:
@@ -860,35 +831,33 @@ paths:
         data:
           type: object
           properties:
-            idusuario:
+            id:
+              type: string
+            usuario:
+              type: string
+            correo:
               type: string
             isVerified:
               type: boolean
-            idPais:
-              type: string
-            idEmpresa:
-              type: string
             jwToken:
               type: string
             refreshToken:
               type: string
       additionalProperties: false
-
     cadenaRegistroRequest:
       type: object
       required:
-        - nombres
-        - apellidos
+        - nombre
+        - apellido
         - correo
         - fechaNacimiento
-        - idEmpresa
+        - cooperativa
         - password
         - confirmarPassword
-        - idPais
       properties:
-        nombres:
+        nombre:
           type: string
-        apellidos:
+        apellido:
           type: string
         correo:
           type: string
@@ -896,16 +865,13 @@ paths:
           type: string
         fechaNacimiento:
           type: string
-        idEmpresa:
-          type: string
+        cooperativa:
+          type: number
         password:
           type: string
         confirmarPassword:
           type: string
-        idPais:
-          type: string
       additionalProperties: false
-
     cadenaRegistroResponse:
       type: object
       properties:
@@ -916,7 +882,6 @@ paths:
         data:
           type: string
       additionalProperties: false
-
     cadenaRecuperarpasswordRequest:
       type: object
       required:
@@ -925,7 +890,6 @@ paths:
         email:
           type: string
       additionalProperties: false
-
     cadenaRecuperarpasswordResponse:
       type: object
       properties:
@@ -936,8 +900,7 @@ paths:
         data:
           type: string
       additionalProperties: false
-
-    cadenaCambiarpasswordRequest:
+    cadenaReiniciarpasswordRequest:
       type: object
       required:
         - oldPassword
@@ -951,8 +914,7 @@ paths:
         confirmPassword:
           type: string
       additionalProperties: false
-
-    cadenaCambiarpasswordResponse:
+    cadenaReiniciarpasswordResponse:
       type: object
       properties:
         resultado:
@@ -962,7 +924,17 @@ paths:
         data:
           type: string
       additionalProperties: false
-
+    cadenaCambiarpasswordRequest:
+      type: object
+      properties:
+        password:
+          type: string
+        confirmPassword:
+          type: string
+        email:
+          type: string
+        token:
+          type: string
     cadenaStatustokenRequest:
       type: object
       properties:
@@ -971,7 +943,6 @@ paths:
         accessToken:
           type: string
       additionalProperties: false
-
     cadenaStatustokenResponse:
       type: object
       properties:
@@ -982,20 +953,19 @@ paths:
         data:
           type: object
           properties:
-            idusuario:
+            id:
+              type: string
+            usuario:
+              type: string
+            correo:
               type: string
             isVerified:
               type: boolean
-            idPais:
-              type: string
-            idEmpresa:
-              type: string                           
             jwToken:
               type: string
             refreshToken:
               type: string
       additionalProperties: false
-
     cadenaDepartamentoResponse:
       type: object
       properties:
@@ -1013,7 +983,6 @@ paths:
               nombre:
                 type: string
       additionalProperties: false
-
     cadenaMunicipiosResponse:
       type: object
       properties:
@@ -1030,10 +999,9 @@ paths:
                 type: string
               nombre:
                 type: string
-              idDepartamento:
+              codigo_departamento:
                 type: number
       additionalProperties: false
-
     cadenaZonasmunicipioResponse:
       type: object
       properties:
@@ -1050,10 +1018,9 @@ paths:
                 type: string
               nombre:
                 type: string
-              idMunicipio:
+              codigo_municipio:
                 type: number
       additionalProperties: false      
-
     cadenaDireccionResponse:
       type: object
       properties:
@@ -1066,7 +1033,7 @@ paths:
           items:
             type: object
             properties:
-              id:
+              codigoDireccion:
                 type: string
               direccion:
                 type: string
@@ -1091,7 +1058,6 @@ paths:
               departamentoNombre:
                 type: string                
       additionalProperties: false
-
     cadenaDireccionCreateRequest:
       type: object
       properties:
@@ -1112,7 +1078,6 @@ paths:
         departamento:
           type: number
       additionalProperties: false
-
     cadenaDireccionCreateResponse:
       type: object
       properties:
@@ -1123,7 +1088,7 @@ paths:
         data:
           type: object
           properties:
-            id:
+            codigoDireccion:
               type: string
             direccion:
               type: string
@@ -1148,7 +1113,6 @@ paths:
             departamentoNombre:
               type: string                  
       additionalProperties: false
-
     cadenaDireccionDeleteResponse:
       type: object
       properties:
@@ -1159,11 +1123,11 @@ paths:
         data:
          type: number
       additionalProperties: false
-
     cadenaDireccionActualizarRequest:
       type: object
       properties:
-
+        id:
+          type: string
         direccion:
           type: string
         alias:
@@ -1181,7 +1145,6 @@ paths:
         departamento:
           type: number
       additionalProperties: false
-
     cadenaDireccionActualizarResponse:
       type: object
       properties:
@@ -1241,570 +1204,4 @@ paths:
               direccion:
                 type: string
       additionalProperties: false
-
-    cadenaNitCreateRequest:
-      type: object
-      properties:
-        nit:
-          type: string
-        razon:
-          type: string
-        nombre:
-          type: string
-        direccion:
-          type: string
-      additionalProperties: false
-       
-    cadenaNitCreateResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            codigoNit:
-              type: string
-            nit:
-              type: string
-            razon:
-              type: string
-            nombre:
-              type: string              
-            direccion:
-              type: string
-      additionalProperties: false
-
-    cadenaNitDeleteResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: number
-      additionalProperties: false
-
-    cadenaNitActualizarRequest:
-      type: object
-      properties:
-        nit:
-          type: string
-        razon:
-          type: string
-        nombre:
-          type: string          
-        direccion:
-          type: string
-      additionalProperties: false
-
-    cadenaNitActualizarResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            codigoNit:
-              type: string
-            nit:
-              type: string
-            razon:
-              type: string
-            nombre:
-              type: string
-            direccion:
-              type: string
-      additionalProperties: false
-       
-    cadenaDomicilioRequest:
-      type: object
-      required:
-        - codigoDatoFacturacion
-        - codigoDireccion
-        - tipoPago
-        - moneda
-        - monto
-        - productos
-      properties:
-        codigoDatoFacturacion:
-          type: string
-        codigoDireccion:
-          type: string
-        codigoTarjeta:
-          type: string               
-        tipoPago:
-          type: number
-        moneda:
-          type: string
-        monto:
-          type: string
-        comentarios_orden_1:
-          type: string
-        comentarios_orden_2:
-          type: string
-        programacionEnvio:
-          type: number
-        divisionPedido:
-          type: number
-        monedaPedido1:
-          type: string
-        montoPedido1:
-          type: number
-        vueltoPedido1:
-          type: number
-        monedaPedido2:
-          type: string
-        montoPedido2:
-          type: number
-        vueltoPedido2:
-          type: number
-        fotos:
-          type: array
-          items:
-            type: object
-            properties:
-              receta:
-                type: string
-        productos:
-          type: array
-          items:
-            type: object
-            properties:
-              codigoProducto:
-                type: string
-              sku:
-                type: string
-              cantidad:
-                type: number
-              monedaPrecioVenta:
-                type: string
-              precioVenta:
-                type: number
-              anillo:
-                type: number
-              codFarmacia:
-                type: string
-              codigoHub:
-                type: string
-              
-      additionalProperties: false
-
-    cadenaDomicilioResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            codigoOrden:
-              type: string
-            tiempoLlegada:
-              type: string
-            status:
-              type: number
-            descripcion:
-              type: string
-            no_pedido:
-              type: string
-      additionalProperties: false
-
-    cadenaPerfilResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            nombres:
-              type: string
-            apellidos:
-              type: string
-            fechaNacimiento:
-              type: string
-              format: date-time
-            telefono:
-              type: string
-            correo:
-              type: string
-            foto:
-              type: string              
-      additionalProperties: false      
-
-    cadenaPerfilactualizarRequest:
-      type: object
-      properties:
-        nombres:
-          type: string
-        apellidos:
-          type: string
-        fechaNacimiento:
-          type: string
-          format: date-time
-        telefono:
-          type: string
-        correo:
-          type: string          
-        foto:
-          type: string
-          format: base64
-      additionalProperties: false
     
-    cadenaPerfilactualizarResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            nombres:
-              type: string
-            apellidos:
-              type: string
-            fechaNacimiento:
-              type: string
-              format: date-time
-            telefono:
-              type: string
-            correo:
-              type: string
-            foto:
-              type: string              
-      additionalProperties: false
-
-    cadenaProductodomicilioResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            numeroPagina:
-              type: number
-            tamanoPagina:
-              type: number
-            totalPaginas:
-              type: number
-            totalRegistros:
-              type: number
-            productos:
-              type: array
-              items:
-                type: object
-                properties:
-                  codigoProducto:
-                    type: string
-                  sku:
-                    type: string
-                  nombre:
-                    type: string
-                  moneda:
-                    type: string
-                  precio:
-                    type: number
-                  monedaPrecioVenta:
-                    type: string                    
-                  precioVenta:
-                    type: number
-                  anillo:
-                    type: number
-                  codigoHub:
-                    type: string
-                  codigoFarmacia:
-                    type: string
-                  promocion:
-                    type: string
-                  tiempoMinutos:
-                    type: number
-      additionalProperties: false
-                  
-    cadenaProductofavoritosQueryparam:
-      type: object
-      properties:
-        sku:
-          type: string
-        cantidad:
-          type: number
-      additionalProperties: false
-
-    cadenaProductofavoritosResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            totalRegistros:
-              type: number
-            productos:
-              type: array
-              items:
-                type: object
-                properties:
-                  codigoProducto:
-                    type: string
-                  sku:
-                    type: string
-                  nombre:
-                    type: string
-                  moneda:
-                    type: string
-                  precio:
-                    type: number
-                  monedaPrecioVenta:
-                    type: string
-                  precioVenta:
-                    type: number
-                  anillo:
-                    type: number
-                  codigoHub:
-                    type: string
-                  codigoFarmacia:
-                    type: string
-                  promocion:
-                    type: string
-                  tiempoMinutos:
-                    type: number
-      additionalProperties: false
-
-    cadenaProductohistorialResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            numeroPagina:
-              type: number
-            tamanoPagina:
-              type: number
-            totalPaginas:
-              type: number
-            totalRegistros:
-              type: number
-            productos:
-              type: array
-              items:
-                type: object
-                properties:
-                  codigoProducto:
-                    type: string
-                  nombreProducto:
-                    type: string
-                  cantidad:
-                    type: number
-                  monedaPrecioVenta:
-                    type: string
-                  precioVenta:
-                    type: number
-                  fecha:
-                    type: string
-                    format: date-time
-      additionalProperties: false 
-
-    cadenaProductosfavoritosResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              codigoProducto:
-                type: string
-              nombre:
-                type: string
-      additionalProperties: false
-
-    cadenaProductosfavoritosCreateRequest:
-      required:
-       - codigoProducto
-      type: object
-      properties:
-        codigoProducto:
-          type: string
-      additionalProperties: false
-
-    cadenaProductosfavoritosCreateResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            codigoFavorito:
-              type: string
-      additionalProperties: false
-
-    cadenaProductosfavoritosDeleteResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: string
-      additionalProperties: false
-
-    cadenaTarjetatokenGetResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              codigoTarjeta:
-                type: string
-              tarjeta:
-                type: string
-              nombre:
-                type: string
-              apellido:
-                type: string
-              tipoTarjeta:
-                type: string
-      additionalProperties: false
-
-    cadenaTarjetatokenPostRequest:
-      type: object
-      properties:
-        nombreTarjeta:
-          type: string
-        apellidoTarjeta:
-          type: string
-        numeracion:
-          type: string
-        mes:
-          type: number
-        anio:
-          type: number
-        cvv:
-          type: string
-        direccionId:
-          type: string
-      additionalProperties: false
-    
-    cadenaTarjetatokenPostResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            codigoTarjeta:
-              type: string
-            tarjeta:
-              type: string
-            nombre:
-              type: string
-            apellido:
-                type: string
-      additionalProperties: false
-
-    cadenaTarjetatokenidDeleteResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            codigoTarjeta:
-              type: string
-            tarjeta:
-              type: string
-            nombre:
-              type: string
-            apellido:
-              type: string
-      additionalProperties: false
-
-    cadenasaludEmpresaResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            empresa:
-              type: string
-            fecha_nacimiento:
-              type: string
-            nombre_afiliado:
-              type: string
-            nit:
-              type: string
-            moneda:
-              type: string
-            monto_disponible:
-              type: number
-            aplica_descuento:
-              type: boolean
-      additionalProperties: false
-
-    cadenasaludEmpresaFlagsResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            idEmpresas:
-              type: array
-              items:
-                type: string
-      additionalProperties: false
