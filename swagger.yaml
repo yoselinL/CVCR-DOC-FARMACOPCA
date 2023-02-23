@@ -691,6 +691,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaProductosfavoritosDeleteResponse"
+
   /api/tarjetastoken:
     get:
       tags:
@@ -719,6 +720,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaTarjetatokenPostResponse"
+
   /api/tarjetastoken/{id}:
     get:
       tags:
@@ -754,6 +756,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaTarjetatokenidDeleteResponse"
+
   /api/tiempo-entrega:
     get:
       tags:
@@ -767,7 +770,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/cadenaTiempoapoyoResponse"
   
-  components:
+components:
   schemas:
     cadenaCooperativasResponse:
       type: object
@@ -1204,4 +1207,829 @@ paths:
               direccion:
                 type: string
       additionalProperties: false
+
+    cadenaNitCreateRequest:
+      type: object
+      properties:
+        nit:
+          type: string
+        razon:
+          type: string
+        nombre:
+          type: string
+        direccion:
+          type: string
+      additionalProperties: false    
+
+    cadenaNitCreateResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            codigoNit:
+              type: string
+            nit:
+              type: string
+            razon:
+              type: string
+            nombre:
+              type: string              
+            direccion:
+              type: string
+      additionalProperties: false      
+
+    cadenaNitDeleteResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: number
+      additionalProperties: false
+
+    cadenaNitActualizarRequest:
+      type: object
+      properties:
+        codigoNit:
+          type: string
+        nit:
+          type: string
+        razon:
+          type: string
+        nombre:
+          type: string          
+        direccion:
+          type: string
+      additionalProperties: false
+
+    cadenaNitActualizarResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            codigoNit:
+              type: string
+            nit:
+              type: string
+            razon:
+              type: string
+            nombre:
+              type: string
+            direccion:
+              type: string
+      additionalProperties: false
+
+    cadenaOrdeneslistResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            ordenPrincipal:
+              type: string
+            codigoOrden:
+              type: string
+            comentarios:
+              type: string
+            vueltoDe:
+              type: number
+            monto:
+              type: number
+            divisionPedido:
+              type: string
+            realizaTraslado:
+              type: string
+            tipoPago:
+              type: string
+            tipoPedido:
+              type: string
+            tiempoLlegada:
+              type: string  
+            programacionEnvio:
+              type: string  
+            fechaProgramacionInicio:
+              type: string  
+            fechaProgramacionFin:
+              type: string
+            direccion:
+              type: object
+              properties:
+                codigoDireccion:
+                  type: string
+                direccionCompleta:
+                  type: string
+                direccion:
+                  type: string
+                alias:
+                  type: string
+                colonia:
+                  type: string
+                numeroCasa:
+                  type: string
+                indicaciones:
+                  type: string
+                zona:
+                  type: number
+                municipio:
+                  type: number
+                departamento:
+                  type: number
+            ordenEstatusEntregas:
+              type: array
+              items:
+                type: object
+                properties:
+                  created:
+                    type: string
+                    format: date-time
+                  estatusEntrega:
+                    type: object
+                    properties:
+                      codigoEstatus:
+                        type: number
+                      nombre:
+                        type: string
+            ordenProductos:
+              type: array
+              items:
+                type: object
+                properties:
+                  codigoProducto:
+                    type: string
+                  sku:
+                    type: string
+                  nombreProducto:
+                    type: string
+                  precioVenta:
+                    type: number
+                  cantidad:
+                    type: number
+                  codigoHub:
+                    type: string
+                  anillo:
+                    type: integer
+      additionalProperties: false                
+
+    cadenaOrdenResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            numeroPagina:
+              type: number
+            tamanoPagina:
+              type: number
+            totalPaginas:
+              type: number
+            totalRegistros:
+              type: number
+            codigoPedido:
+              type: string
+            fechaPedido:
+              type: string
+              format: date-time
+            horaPedido:
+              type: string
+            fechaHoraEstimada:
+              type: string
+              format: date-time
+            totalPedido:
+              type: number
+            codigoEstado:
+              type: string
+            nombreEstado:
+              type: string
+            no_pedido:
+              type: string
+            comentarios:
+              type: string
+            productos:
+              type: array
+              items:
+                type: object
+                properties:
+                  codigoProducto:
+                    type: string
+                  nombreProducto:
+                    type: string
+                  precioVenta:
+                    type: number
+                  cantidad:
+                    type: number
+      additionalProperties: false
+
+    cadenaTrackingResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            entregaEstimada:
+              type: string
+            codigoEstado:
+              type: number
+            estadosPedido:
+              type: array
+              items:
+                type: object
+                properties:
+                  codigoEstado:
+                    type: number
+                  nombreEstado:
+                    type: string
+                  fechaHoraEstimada:
+                    type: string
+                    format: date-time
+            infoRepartidor:
+              type: array
+              items:
+                type: object
+                properties:
+                  codigoRepartidor:
+                    type: number
+                  nombreCompleto:
+                    type: string
+                  telefono:
+                    type: string
+            trackingPedido:
+              type: array
+              items:
+                type: object
+                properties:
+                  lat:
+                    type: number
+                  lng:
+                    type: number
+      additionalProperties: false
+
+    cadenaFinalizadoResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            totalPedido:
+              type: number
+            fechaPedido:
+              type: string
+              format: date-time
+            calificado:
+              type: boolean
+            calificacion:
+              type: number
+            comentario:
+              type: string
+            productos:
+              type: array
+              items:
+                type: object
+                properties:
+                  codigoProducto:
+                    type: string
+                  nombre:
+                    type: string
+                  cantidad:
+                    type: number
+                  precioVenta:
+                    type: number
+      additionalProperties: false
+
+    cadenaActivoResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            codigoEstado:
+              type: number
+            totalPedido:
+              type: number
+            fechaPedido:
+              type: string
+              format: date-time
+            callCenter:
+              type: string
+            numeroPedido:
+              type: string
+            seriePedido:
+              type: string
+            productos:
+              type: array
+              items:
+                type: object
+                properties:
+                  codigoProducto:
+                    type: string
+                  nombre:
+                    type: string
+                  cantidad:
+                    type: number
+                  precioVenta:
+                    type: number
+      additionalProperties: false
+
+    cadenaCalificarRequest:
+      type: object
+      properties:
+        ordenId:
+          type: string
+        calificacion:
+          type: number
+        comentario:
+          type: string
+      additionalProperties: false
+
+    cadenaCalificarResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: string
+       
+    cadenaDomicilioRequest:
+      type: object
+      properties:
+        VueltoPedido1:
+          type: number
+    cadenaDomicilioResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: string
     
+    cadenaOrdentransaccionRequest:
+      type: object
+      properties:
+        tarjetaId:
+          type: string
+        monto:
+          type: number
+      additionalProperties: false
+
+    cadenaOrdentransaccionResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: string
+      additionalProperties: false
+
+    cadenaPerfilResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            nombres:
+              type: string
+            apellidos:
+              type: string
+            fechaNacimiento:
+              type: string
+              format: date-time
+            telefono:
+              type: string
+            correo:
+              type: string
+            foto:
+              type: string              
+      additionalProperties: false
+
+    cadenaPerfilactualizarRequest:
+      type: object
+      properties:
+        nombres:
+          type: string
+        apellidos:
+          type: string
+        fechaNacimiento:
+          type: string
+          format: date-time
+        telefono:
+          type: string
+        correo:
+          type: string          
+        foto:
+          type: string
+          format: base64
+      additionalProperties: false
+    
+    cadenaPerfilactualizarResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            nombres:
+              type: string
+            apellidos:
+              type: string
+            fechaNacimiento:
+              type: string
+              format: date-time
+            telefono:
+              type: string
+            correo:
+              type: string
+            foto:
+              type: string              
+      additionalProperties: false
+
+    cadenaProductodomicilioResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            numeroPagina:
+              type: number
+            tamanoPagina:
+              type: number
+            primeraPagina:
+              type: string
+            ultimaPagina:
+              type: string
+            totalPaginas:
+              type: number
+            totalRegistros:
+              type: number
+            siguientePagina:
+              type: string
+            anteriorPagina:
+              type: string
+            productos:
+              type: array
+              items:
+                type: object
+                properties:
+                  codigoProducto:
+                    type: string
+                  sku:
+                    type: string
+                  nombre:
+                    type: string
+                  descripcion:
+                    type: string
+                  precio:
+                    type: number
+                  precioVenta:
+                    type: number
+                  disponible:
+                    type: boolean
+                  anillo:
+                    type: number
+                  necesitaReceta:
+                    type: boolean
+                  codigoHub:
+                    type: string
+                  codigoFarmacia:
+                    type: string
+                  cantidadInventario:
+                    type: number
+                  notificar_dias:
+                    type: number
+                  es_recurrente:
+                    type: boolean
+                  promocion:
+                    type: string
+                  tiempoMinutos:
+                    type: number
+      additionalProperties: false                          
+
+    cadenaProductofavoritosQueryparam:
+      type: object
+      properties:
+        sku:
+          type: string
+        cantidad:
+          type: number
+      additionalProperties: false
+
+    cadenaProductofavoritosResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            totalRegistros:
+              type: number
+            productos:
+              type: array
+              items:
+                type: object
+                properties:
+                  codigoProducto:
+                    type: string
+                  sku:
+                    type: string
+                  nombre:
+                    type: string
+                  descripcion:
+                    type: string
+                  precio:
+                    type: number
+                  precioVenta:
+                    type: number
+                  disponible:
+                    type: boolean
+                  anillo:
+                    type: number
+                  necesitaReceta:
+                    type: boolean
+                  codigoHub:
+                    type: string
+                  codigoFarmacia:
+                    type: string
+                  cantidadInventario:
+                    type: number
+                  notificar_dias:
+                    type: number
+                  es_recurrente:
+                    type: boolean
+                  promocion:
+                    type: string
+                  tiempoMinutos:
+                    type: number
+      additionalProperties: false
+
+    cadenaProductohistorialResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            numeroPagina:
+              type: number
+            tamanoPagina:
+              type: number
+            totalPaginas:
+              type: number
+            totalRegistros:
+              type: number
+            productos:
+              type: array
+              items:
+                type: object
+                properties:
+                  codigoProducto:
+                    type: string
+                  nombreProducto:
+                    type: string
+                  cantidad:
+                    type: number
+                  precioVenta:
+                    type: number
+                  fecha:
+                    type: string
+                    format: date-time
+      additionalProperties: false 
+
+    cadenaProductosfavoritosResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              codigoProducto:
+                type: string
+              nombre:
+                type: string
+              descripcion:
+                type: string
+      additionalProperties: false
+
+    cadenaProductosfavoritosCreateRequest:
+      required:
+       - codigoProducto
+      type: object
+      properties:
+        codigoProducto:
+          type: string
+      additionalProperties: false
+
+    cadenaProductosfavoritosCreateResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            codigoFavorito:
+              type: string
+      additionalProperties: false
+
+    cadenaProductosfavoritosDeleteResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: string
+      additionalProperties: false
+
+    cadenaTarjetatokenGetResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              codigoTarjeta:
+                type: string
+              tarjeta:
+                type: string
+              nombre:
+                type: string
+              apellido:
+                type: string
+              tipoTarjeta:
+                type: string
+      additionalProperties: false
+
+    cadenaTarjetatokenPostRequest:
+      type: object
+      properties:
+        nombreTarjeta:
+          type: string
+        apellidoTarjeta:
+          type: string
+        numeracion:
+          type: string
+        mes:
+          type: number
+        anio:
+          type: number
+        cvv:
+          type: string
+        direccionId:
+          type: string
+      additionalProperties: false
+
+    cadenaTarjetatokenPostResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            codigoTarjeta:
+              type: string
+            tarjeta:
+              type: string
+            nombre:
+              type: string
+            apellido:
+                type: string
+      additionalProperties: false
+
+    cadenaTarjetatokenidGetResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            codigoTarjeta:
+              type: string
+            tarjeta:
+              type: string
+            nombre:
+              type: string
+            apellido:
+              type: string
+            tipoTarjeta:
+              type: string
+      additionalProperties: false
+
+    cadenaTarjetatokenidDeleteResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: object
+          properties:
+            codigoTarjeta:
+              type: string
+            tarjeta:
+              type: string
+            nombre:
+              type: string
+            apellido:
+              type: string
+            tipoTarjeta:
+              type: string
+      additionalProperties: false
+
+    cadenaTiempoapoyoResponse:
+      type: object
+      properties:
+        resultado:
+          type: boolean
+        mensaje:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              codigoTiempoEntrega:
+                type: number
+              tiempoEntrega:
+                type: number
+      additionalProperties: false                                                                                                           
