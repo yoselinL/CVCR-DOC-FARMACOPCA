@@ -18,7 +18,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaCooperativasResponse"
-                
+
   /api/cooperativa/verificar-codigo:
     post:
       tags:
@@ -36,6 +36,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaCooperativaCodigoResponse"
+
   /api/cuenta/autenticar:
     post:
       tags:
@@ -53,6 +54,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaAutenticarResponse"
+
   /api/cuenta/registro:
     post:
       tags:
@@ -70,6 +72,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaRegistroResponse"
+
   /api/cuenta/recuperar-password:
     post:
       tags:
@@ -87,6 +90,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaRecuperarpasswordResponse"
+
   /api/cuenta/reiniciar-password:
     post:
       tags:
@@ -104,6 +108,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaReiniciarpasswordResponse"
+                
   /api/cuenta/cambiar-password:
     post:
       tags:
@@ -117,6 +122,7 @@ paths:
       responses:
         200:
           description: Success
+
   /api/cuenta/status-token:
     post:
       tags:
@@ -134,6 +140,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaStatustokenResponse"
+
   /api/departamento:
     get:
       tags:
@@ -146,6 +153,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaDepartamentoResponse"
+
   /api/departamento/{departamentoId}/municipios:
     get:
       tags:
@@ -165,6 +173,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaMunicipiosResponse"
+
   /api/municipio/{municipioId}/zonas:
     get:
       tags:
@@ -184,6 +193,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaZonasmunicipioResponse"
+
   /api/direccion:
     get:
       tags:
@@ -212,6 +222,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaDireccionCreateResponse"
+
   /api/direccion/{id}:
     delete:
       tags:
@@ -283,6 +294,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaNitCreateResponse"
+
   /api/nit/{id}:
     delete:
       tags:
@@ -373,6 +385,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaOrdenResponse"
+
   /api/orden/{ordenId}/tracking:
     get:
       tags:
@@ -411,7 +424,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/cadenaFinalizadoResponse"          
+                $ref: "#/components/schemas/cadenaFinalizadoResponse"
+
   /api/orden/{ordenId}/activo:
     get:
       tags:
@@ -431,6 +445,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaActivoResponse"
+
   /api/orden/{id}/calificar:
     patch:
       tags:
@@ -455,6 +470,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaCalificarResponse"
+
   /api/orden/domicilio:
     post:
       tags:
@@ -472,6 +488,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaDomicilioResponse"
+
   /api/ordentransaccion:
     post:
       tags:
@@ -489,6 +506,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaOrdentransaccionResponse"
+
   /api/perfil:
     get:
       tags:
@@ -517,6 +535,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaPerfilactualizarResponse"
+
   /api/producto/domicilio:
     get:
       tags:
@@ -551,6 +570,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaProductodomicilioResponse"
+
   /api/producto/favoritos:
     get:
       tags:
@@ -591,6 +611,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaProductofavoritosResponse"
+
   /api/producto/historial:
     get:
       tags:
@@ -651,6 +672,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaProductosfavoritosCreateResponse"
+                
   /api/productos-favoritos/{id}:
     delete:
       tags:
