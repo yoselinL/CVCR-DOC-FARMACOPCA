@@ -987,7 +987,7 @@ components:
                 type: string
               nombre:
                 type: string
-              codigo_departamento:
+              idDepartamento:
                 type: number
       additionalProperties: false
 
@@ -1007,7 +1007,7 @@ components:
                 type: string
               nombre:
                 type: string
-              codigo_municipio:
+              idMunicipio:
                 type: number
       additionalProperties: false
         
