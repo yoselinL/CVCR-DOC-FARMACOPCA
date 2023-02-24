@@ -90,24 +90,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaRecuperarpasswordResponse"
-
-  /api/cuenta/reiniciar-password:
-    post:
-      tags:
-        - cuenta
-      summary: Reiniciar contraseña
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/cadenaReiniciarpasswordRequest"
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaReiniciarpasswordResponse"
                 
   /api/cuenta/cambiar-password:
     post:
@@ -122,6 +104,10 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cadenaCambiarpasswordResponse"          
 
   /api/cuenta/status-token:
     post:
@@ -838,14 +824,12 @@ components:
         data:
           type: object
           properties:
-            id:
-              type: string
-            usuario:
-              type: string
-            correo:
+            idusuario:
               type: string
             isVerified:
               type: boolean
+            idCooperativa:
+              type: string             
             jwToken:
               type: string
             refreshToken:
@@ -859,7 +843,7 @@ components:
         - apellido
         - correo
         - fechaNacimiento
-        - cooperativa
+        - idCooperativa
         - password
         - confirmarPassword
       properties:
@@ -873,7 +857,7 @@ components:
           type: string
         fechaNacimiento:
           type: string
-        cooperativa:
+        idCooperativa:
           type: number
         password:
           type: string
@@ -912,7 +896,7 @@ components:
           type: string
       additionalProperties: false
 
-    cadenaReiniciarpasswordRequest:
+    cadenaCambiarpasswordRequest:
       type: object
       required:
         - oldPassword
@@ -927,7 +911,7 @@ components:
           type: string
       additionalProperties: false
 
-    cadenaReiniciarpasswordResponse:
+    cadenaCambiarpasswordResponse:
       type: object
       properties:
         resultado:
@@ -936,19 +920,7 @@ components:
           type: string
         data:
           type: string
-      additionalProperties: false
-
-    cadenaCambiarpasswordRequest:
-      type: object
-      properties:
-        password:
-          type: string
-        confirmPassword:
-          type: string
-        email:
-          type: string
-        token:
-          type: string
+      additionalProperties: false      
 
     cadenaStatustokenRequest:
       type: object
@@ -969,14 +941,12 @@ components:
         data:
           type: object
           properties:
-            id:
-              type: string
-            usuario:
-              type: string
-            correo:
+            idusuario:
               type: string
             isVerified:
               type: boolean
+            idCooperativa:
+              type: string               
             jwToken:
               type: string
             refreshToken:
@@ -1169,7 +1139,7 @@ components:
         departamento:
           type: number
       additionalProperties: false
-      
+
     cadenaDireccionActualizarResponse:
       type: object
       properties:
