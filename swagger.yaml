@@ -323,139 +323,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaNitActualizarResponse"
-                  
-  /api/orden/list:
-    get:
-      tags:
-        - orden
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaOrdeneslistResponse"
-  
-  /api/orden:
-    get:
-      tags:
-        - orden
-      summary: Obtener una Orden por el código de orden
-      parameters:
-        - in: query
-          name: FechaInicial
-          schema:
-            type: string
-            format: date-time
-        - in: query
-          name: FechaFinal
-          schema:
-            type: string
-            format: date-time
-        - in: query
-          name: Tipo
-          schema:
-            type: number
-        - in: query
-          name: NumeroPagina
-          schema:
-            type: number
-        - in: query
-          name: TamanoPagina
-          schema:
-            type: number
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaOrdenResponse"
-
-  /api/orden/{ordenId}/tracking:
-    get:
-      tags:
-        - orden
-      summary: Tracking de pedido
-      parameters:
-        - in: path
-          name: OrdenId
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaTrackingResponse"
-  
-  /api/orden/{ordenId}/finalizado:
-    get:
-      tags:
-        - orden
-      summary: Obtener información de pedido finalizado
-      parameters:
-        - in: path
-          name: OrdenId
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaFinalizadoResponse"
-
-  /api/orden/{ordenId}/activo:
-    get:
-      tags:
-        - orden
-      summary: Obtener información de pedido finalizado
-      parameters:
-        - in: path
-          name: OrdenId
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaActivoResponse"
-
-  /api/orden/{id}/calificar:
-    patch:
-      tags:
-        - orden
-      summary: Calificar una orden
-      parameters:
-        - in: path
-          name: Id
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/cadenaCalificarRequest"
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaCalificarResponse"
 
   /api/orden/domicilio:
     post:
@@ -1264,305 +1131,72 @@ components:
             direccion:
               type: string
       additionalProperties: false
-
-    cadenaOrdeneslistResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            ordenPrincipal:
-              type: string
-            codigoOrden:
-              type: string
-            comentarios:
-              type: string
-            vueltoDe:
-              type: number
-            monto:
-              type: number
-            divisionPedido:
-              type: string
-            realizaTraslado:
-              type: string
-            tipoPago:
-              type: string
-            tipoPedido:
-              type: string
-            tiempoLlegada:
-              type: string  
-            programacionEnvio:
-              type: string  
-            fechaProgramacionInicio:
-              type: string  
-            fechaProgramacionFin:
-              type: string
-            direccion:
-              type: object
-              properties:
-                codigoDireccion:
-                  type: string
-                direccionCompleta:
-                  type: string
-                direccion:
-                  type: string
-                alias:
-                  type: string
-                colonia:
-                  type: string
-                numeroCasa:
-                  type: string
-                indicaciones:
-                  type: string
-                zona:
-                  type: number
-                municipio:
-                  type: number
-                departamento:
-                  type: number
-            ordenEstatusEntregas:
-              type: array
-              items:
-                type: object
-                properties:
-                  created:
-                    type: string
-                    format: date-time
-                  estatusEntrega:
-                    type: object
-                    properties:
-                      codigoEstatus:
-                        type: number
-                      nombre:
-                        type: string
-            ordenProductos:
-              type: array
-              items:
-                type: object
-                properties:
-                  codigoProducto:
-                    type: string
-                  sku:
-                    type: string
-                  nombreProducto:
-                    type: string
-                  precioVenta:
-                    type: number
-                  cantidad:
-                    type: number
-                  codigoHub:
-                    type: string
-                  anillo:
-                    type: integer
-      additionalProperties: false                
-
-    cadenaOrdenResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            numeroPagina:
-              type: number
-            tamanoPagina:
-              type: number
-            totalPaginas:
-              type: number
-            totalRegistros:
-              type: number
-            codigoPedido:
-              type: string
-            fechaPedido:
-              type: string
-              format: date-time
-            horaPedido:
-              type: string
-            fechaHoraEstimada:
-              type: string
-              format: date-time
-            totalPedido:
-              type: number
-            codigoEstado:
-              type: string
-            nombreEstado:
-              type: string
-            no_pedido:
-              type: string
-            comentarios:
-              type: string
-            productos:
-              type: array
-              items:
-                type: object
-                properties:
-                  codigoProducto:
-                    type: string
-                  nombreProducto:
-                    type: string
-                  precioVenta:
-                    type: number
-                  cantidad:
-                    type: number
-      additionalProperties: false
-
-    cadenaTrackingResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            entregaEstimada:
-              type: string
-            codigoEstado:
-              type: number
-            estadosPedido:
-              type: array
-              items:
-                type: object
-                properties:
-                  codigoEstado:
-                    type: number
-                  nombreEstado:
-                    type: string
-                  fechaHoraEstimada:
-                    type: string
-                    format: date-time
-            infoRepartidor:
-              type: array
-              items:
-                type: object
-                properties:
-                  codigoRepartidor:
-                    type: number
-                  nombreCompleto:
-                    type: string
-                  telefono:
-                    type: string
-            trackingPedido:
-              type: array
-              items:
-                type: object
-                properties:
-                  lat:
-                    type: number
-                  lng:
-                    type: number
-      additionalProperties: false
-
-    cadenaFinalizadoResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            totalPedido:
-              type: number
-            fechaPedido:
-              type: string
-              format: date-time
-            calificado:
-              type: boolean
-            calificacion:
-              type: number
-            comentario:
-              type: string
-            productos:
-              type: array
-              items:
-                type: object
-                properties:
-                  codigoProducto:
-                    type: string
-                  nombre:
-                    type: string
-                  cantidad:
-                    type: number
-                  precioVenta:
-                    type: number
-      additionalProperties: false
-
-    cadenaActivoResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            codigoEstado:
-              type: number
-            totalPedido:
-              type: number
-            fechaPedido:
-              type: string
-              format: date-time
-            callCenter:
-              type: string
-            numeroPedido:
-              type: string
-            seriePedido:
-              type: string
-            productos:
-              type: array
-              items:
-                type: object
-                properties:
-                  codigoProducto:
-                    type: string
-                  nombre:
-                    type: string
-                  cantidad:
-                    type: number
-                  precioVenta:
-                    type: number
-      additionalProperties: false
-
-    cadenaCalificarRequest:
-      type: object
-      properties:
-        ordenId:
-          type: string
-        calificacion:
-          type: number
-        comentario:
-          type: string
-      additionalProperties: false
-
-    cadenaCalificarResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: string
        
     cadenaDomicilioRequest:
       type: object
+      required:
+        - codigoDatoFacturacion
+        - codigoDireccion
+        - tipoPago
+        - moneda
+        - monto
+        - productos
       properties:
-        VueltoPedido1:
+        codigoDatoFacturacion:
+          type: string
+        codigoDireccion:
+          type: string
+        codigoTarjeta:
+          type: string               
+        tipoPago:
           type: number
+        moneda:
+          type: string          
+        monto:
+          type: string
+        comentarios_orden_1:
+          type: string
+        comentarios_orden_2:
+          type: string
+        programacionEnvio:
+          type: number
+        divisionPedido:
+          type: number
+        monedaPedido1:
+          type: string          
+        montoPedido1:
+          type: number
+        vueltoPedido1:
+          type: number
+        monedaPedido2:
+          type: string          
+        montoPedido2:
+          type: number
+        vueltoPedido2:
+          type: number
+        productos:
+          type: array
+          items:
+            type: object
+            properties:
+              codigoProducto:
+                type: string
+              sku:
+                type: string
+              cantidad:
+                type: number
+              monedaPrecioVenta:
+                type: string
+              precioVenta:
+                type: number
+              anillo:
+                type: number
+              codFarmacia:
+                type: string
+              codigoHub:
+                type: string
+      additionalProperties: false                                                              
+
     cadenaDomicilioResponse:
       type: object
       properties:
@@ -1571,7 +1205,19 @@ components:
         mensaje:
           type: string
         data:
-          type: string
+          type: object
+          properties:
+            codigoOrden:
+              type: string
+            tiempoLlegada:
+              type: string
+            status:
+              type: number
+            descripcion:
+              type: string
+            no_pedido:
+              type: string
+      additionalProperties: false
     
     cadenaOrdentransaccionRequest:
       type: object
