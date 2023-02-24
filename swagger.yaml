@@ -427,18 +427,6 @@ paths:
           name: codigoDireccion
           schema:
             type: string
-        - in: query
-          name: tiempoLlegada
-          schema:
-            type: number
-        - in: query
-          name: numeroPagina
-          schema:
-            type: number
-        - in: query
-          name: tamanoPagina
-          schema:
-            type: number
       responses:
         200:
           description: Success
@@ -1270,18 +1258,10 @@ components:
               type: number
             tamanoPagina:
               type: number
-            primeraPagina:
-              type: string
-            ultimaPagina:
-              type: string
             totalPaginas:
               type: number
             totalRegistros:
               type: number
-            siguientePagina:
-              type: string
-            anteriorPagina:
-              type: string
             productos:
               type: array
               items:
@@ -1291,9 +1271,15 @@ components:
                     type: string
                   sku:
                     type: string
-                  nombre:
+                  productoVenta:
                     type: string
-                  descripcion:
+                  mensaje:
+                    type: string
+                  productoComercial:
+                    type: string
+                  moneda:
+                    type: string
+                  ahorro:
                     type: string
                   precio:
                     type: number
@@ -1303,18 +1289,12 @@ components:
                     type: boolean
                   anillo:
                     type: number
-                  necesitaReceta:
-                    type: boolean
                   codigoHub:
                     type: string
                   codigoFarmacia:
                     type: string
                   cantidadInventario:
                     type: number
-                  notificar_dias:
-                    type: number
-                  es_recurrente:
-                    type: boolean
                   promocion:
                     type: string
                   tiempoMinutos:
@@ -1351,9 +1331,15 @@ components:
                     type: string
                   sku:
                     type: string
-                  nombre:
+                  productoVenta:
                     type: string
-                  descripcion:
+                  mensaje:
+                    type: string
+                  productoComercial:
+                    type: string
+                  moneda:
+                    type: string
+                  ahorro:
                     type: string
                   precio:
                     type: number
@@ -1363,18 +1349,12 @@ components:
                     type: boolean
                   anillo:
                     type: number
-                  necesitaReceta:
-                    type: boolean
                   codigoHub:
                     type: string
                   codigoFarmacia:
                     type: string
                   cantidadInventario:
                     type: number
-                  notificar_dias:
-                    type: number
-                  es_recurrente:
-                    type: boolean
                   promocion:
                     type: string
                   tiempoMinutos:
@@ -1406,7 +1386,15 @@ components:
                 properties:
                   codigoProducto:
                     type: string
-                  nombreProducto:
+                  productoComercial:
+                    type: string
+                  mensaje:
+                    type: string
+                  productoVenta:
+                    type: string
+                  moneda:
+                    type: string
+                  ahorro:
                     type: string
                   cantidad:
                     type: number
@@ -1443,6 +1431,8 @@ components:
                 type: string
               ahorro:
                 type: string
+              precioVenta:
+                    type: number
       additionalProperties: false
 
     cadenaProductosfavoritosCreateRequest:
