@@ -1433,9 +1433,15 @@ components:
                 type: string
               codigoProducto:
                 type: string
-              nombre:
+              productoVenta:
                 type: string
-              descripcion:
+              mensaje:
+                type: string
+              productoComercial:
+                type: string
+              moneda:
+                type: string
+              ahorro:
                 type: string
       additionalProperties: false
 
