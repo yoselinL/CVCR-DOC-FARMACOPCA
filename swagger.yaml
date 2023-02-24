@@ -342,24 +342,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/cadenaDomicilioResponse"
 
-  /api/ordentransaccion:
-    post:
-      tags:
-        - orden transaccion
-      summary: Realiza la peticion de cobro
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/cadenaOrdentransaccionRequest"
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaOrdentransaccionResponse"
-
   /api/perfil:
     get:
       tags:
@@ -1217,26 +1199,6 @@ components:
               type: string
             no_pedido:
               type: string
-      additionalProperties: false
-    
-    cadenaOrdentransaccionRequest:
-      type: object
-      properties:
-        tarjetaId:
-          type: string
-        monto:
-          type: number
-      additionalProperties: false
-
-    cadenaOrdentransaccionResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: string
       additionalProperties: false
 
     cadenaPerfilResponse:
