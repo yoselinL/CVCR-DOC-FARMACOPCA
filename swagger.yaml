@@ -1295,8 +1295,6 @@ components:
                     type: string
                   cantidadInventario:
                     type: number
-                  promocion:
-                    type: string
                   tiempoMinutos:
                     type: number
       additionalProperties: false                          
@@ -1355,8 +1353,6 @@ components:
                     type: string
                   cantidadInventario:
                     type: number
-                  promocion:
-                    type: string
                   tiempoMinutos:
                     type: number
       additionalProperties: false
