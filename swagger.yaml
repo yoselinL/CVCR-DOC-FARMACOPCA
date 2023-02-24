@@ -1233,8 +1233,6 @@ components:
     cadenaNitActualizarRequest:
       type: object
       properties:
-        codigoNit:
-          type: string
         nit:
           type: string
         razon:
