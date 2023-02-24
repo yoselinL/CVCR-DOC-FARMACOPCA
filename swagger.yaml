@@ -591,19 +591,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/cadenaTarjetatokenidDeleteResponse"
-
-  /api/tiempo-entrega:
-    get:
-      tags:
-        - tiempo entrega
-      summary: Obtener listado de tiempo de entrega de pedidos
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaTiempoapoyoResponse"
   
 components:
   schemas:
@@ -1608,22 +1595,4 @@ components:
               type: string
             tipoTarjeta:
               type: string
-      additionalProperties: false
-
-    cadenaTiempoapoyoResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              codigoTiempoEntrega:
-                type: number
-              tiempoEntrega:
-                type: number
-      additionalProperties: false                                                                                                           
+      additionalProperties: false                                                                                      
