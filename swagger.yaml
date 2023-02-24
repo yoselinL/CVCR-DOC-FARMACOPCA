@@ -5,7 +5,7 @@ info:
   version: v2
 
 paths:
-  /api/cooperativa/lista-cooperativa:
+  /api/cooperativa/cooperativas:
     get:
       tags:
         - cooperativa
@@ -19,7 +19,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/cadenaCooperativasResponse"
 
-  /api/cooperativa/verificar-codigo:
+  /api/cooperativa/verificar:
     post:
       tags:
         - cooperativa
@@ -787,17 +787,19 @@ components:
             nombre:
               type: string
       additionalProperties: false
+
     cadenaCooperativaCodigoRequest:
       type: object
       required:
         - codigo
-        - codigoCooperativa
+        - idCooperativa
       properties:
         codigo:
           type: string
-        codigoCooperativa:
+        idCooperativa:
           type: number
       additionalProperties: false
+
     cadenaCooperativaCodigoResponse:
       type: object
       properties:
@@ -813,6 +815,7 @@ components:
             mensaje:
               type: string
       additionalProperties: false
+
     cadenaAutenticarRequest:
       type: object
       required:
@@ -824,6 +827,7 @@ components:
         password:
           type: string
       additionalProperties: false
+
     cadenaAutenticarResponse:
       type: object
       properties:
@@ -847,6 +851,7 @@ components:
             refreshToken:
               type: string
       additionalProperties: false
+
     cadenaRegistroRequest:
       type: object
       required:
@@ -875,6 +880,7 @@ components:
         confirmarPassword:
           type: string
       additionalProperties: false
+
     cadenaRegistroResponse:
       type: object
       properties:
@@ -885,6 +891,7 @@ components:
         data:
           type: string
       additionalProperties: false
+
     cadenaRecuperarpasswordRequest:
       type: object
       required:
@@ -893,6 +900,7 @@ components:
         email:
           type: string
       additionalProperties: false
+
     cadenaRecuperarpasswordResponse:
       type: object
       properties:
@@ -903,6 +911,7 @@ components:
         data:
           type: string
       additionalProperties: false
+
     cadenaReiniciarpasswordRequest:
       type: object
       required:
@@ -917,6 +926,7 @@ components:
         confirmPassword:
           type: string
       additionalProperties: false
+
     cadenaReiniciarpasswordResponse:
       type: object
       properties:
@@ -927,6 +937,7 @@ components:
         data:
           type: string
       additionalProperties: false
+
     cadenaCambiarpasswordRequest:
       type: object
       properties:
@@ -938,6 +949,7 @@ components:
           type: string
         token:
           type: string
+
     cadenaStatustokenRequest:
       type: object
       properties:
@@ -946,6 +958,7 @@ components:
         accessToken:
           type: string
       additionalProperties: false
+
     cadenaStatustokenResponse:
       type: object
       properties:
@@ -969,6 +982,7 @@ components:
             refreshToken:
               type: string
       additionalProperties: false
+
     cadenaDepartamentoResponse:
       type: object
       properties:
@@ -986,6 +1000,7 @@ components:
               nombre:
                 type: string
       additionalProperties: false
+
     cadenaMunicipiosResponse:
       type: object
       properties:
@@ -1005,6 +1020,7 @@ components:
               codigo_departamento:
                 type: number
       additionalProperties: false
+
     cadenaZonasmunicipioResponse:
       type: object
       properties:
@@ -1023,7 +1039,8 @@ components:
                 type: string
               codigo_municipio:
                 type: number
-      additionalProperties: false      
+      additionalProperties: false
+        
     cadenaDireccionResponse:
       type: object
       properties:
@@ -1061,6 +1078,7 @@ components:
               departamentoNombre:
                 type: string                
       additionalProperties: false
+
     cadenaDireccionCreateRequest:
       type: object
       properties:
@@ -1081,6 +1099,7 @@ components:
         departamento:
           type: number
       additionalProperties: false
+
     cadenaDireccionCreateResponse:
       type: object
       properties:
@@ -1116,6 +1135,7 @@ components:
             departamentoNombre:
               type: string                  
       additionalProperties: false
+
     cadenaDireccionDeleteResponse:
       type: object
       properties:
@@ -1126,6 +1146,7 @@ components:
         data:
          type: number
       additionalProperties: false
+
     cadenaDireccionActualizarRequest:
       type: object
       properties:
@@ -1148,6 +1169,7 @@ components:
         departamento:
           type: number
       additionalProperties: false
+      
     cadenaDireccionActualizarResponse:
       type: object
       properties:
