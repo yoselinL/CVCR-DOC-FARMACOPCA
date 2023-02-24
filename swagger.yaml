@@ -1023,7 +1023,7 @@ components:
           items:
             type: object
             properties:
-              codigoDireccion:
+              id:
                 type: string
               direccion:
                 type: string
@@ -1034,10 +1034,6 @@ components:
               numeroCasa:
                 type: string
               indicaciones:
-                type: string
-              zona:
-                type: number
-              zonaNombre:
                 type: string
               municipio:
                 type: number
@@ -1062,8 +1058,6 @@ components:
           type: string
         indicaciones:
           type: string
-        zona:
-          type: number
         municipio:
           type: number
         departamento:
@@ -1091,11 +1085,7 @@ components:
             numeroCasa:
               type: string
             indicaciones:
-              type: string
-            zona:
-              type: number
-            zonaNombre:
-              type: string              
+              type: string             
             municipio:
               type: number
             municipioNombre:
@@ -1132,8 +1122,6 @@ components:
           type: string
         indicaciones:
           type: string
-        zona:
-          type: number
         municipio:
           type: number
         departamento:
@@ -1161,11 +1149,7 @@ components:
             numeroCasa:
               type: string
             indicaciones:
-              type: string
-            zona:
-              type: number
-            zonaNombre:
-              type: string               
+              type: string             
             municipio:
               type: number
             municipioNombre:
