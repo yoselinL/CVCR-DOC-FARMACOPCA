@@ -527,10 +527,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/cadenaProductosfavoritosDeleteResponse"
 
-  /api/tarjetastoken:
+  /api/tarjetas:
     get:
       tags:
-        - tarjetas token
+        - tarjetas
       summary: Obtener todas las tarjetas asociadas al usuario autenticado
       responses:
         200:
@@ -538,45 +538,28 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/cadenaTarjetatokenGetResponse"
+                $ref: "#/components/schemas/cadenaTarjetaGetResponse"
     post:
       tags:
-        - tarjetas token
-      summary: Crear token para tarjeta
+        - tarjetas
+      summary: Agregar una nueva tarjeta
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/cadenaTarjetatokenPostRequest"
+              $ref: "#/components/schemas/cadenaTarjetaPostRequest"
       responses:
         200:
           description: Success
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/cadenaTarjetatokenPostResponse"
+                $ref: "#/components/schemas/cadenaTarjetaPostResponse"
 
-  /api/tarjetastoken/{id}:
-    get:
-      tags:
-        - tarjetas token
-      summary: Recupera una tarjeta en Base a su ID
-      parameters:
-        - in: path
-          name: Id
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/cadenaTarjetatokenidGetResponse"
+  /api/tarjetas/{id}:
     delete:
       tags:
-        - tarjetas token
+        - tarjetas
       summary: Elimina tarjeta del usuario
       parameters:
         - in: path
@@ -590,7 +573,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/cadenaTarjetatokenidDeleteResponse"
+                $ref: "#/components/schemas/cadenaTarjetaidDeleteResponse"
   
 components:
   schemas:
@@ -1490,7 +1473,7 @@ components:
           type: string
       additionalProperties: false
 
-    cadenaTarjetatokenGetResponse:
+    cadenaTarjetaGetResponse:
       type: object
       properties:
         resultado:
@@ -1514,7 +1497,7 @@ components:
                 type: string
       additionalProperties: false
 
-    cadenaTarjetatokenPostRequest:
+    cadenaTarjetaPostRequest:
       type: object
       properties:
         nombreTarjeta:
@@ -1523,17 +1506,15 @@ components:
           type: string
         numeracion:
           type: string
-        mes:
-          type: number
-        anio:
-          type: number
+        fechaExpiracion:
+          type: string
         cvv:
           type: string
         direccionId:
           type: string
       additionalProperties: false
 
-    cadenaTarjetatokenPostResponse:
+    cadenaTarjetaPostResponse:
       type: object
       properties:
         resultado:
@@ -1553,29 +1534,7 @@ components:
                 type: string
       additionalProperties: false
 
-    cadenaTarjetatokenidGetResponse:
-      type: object
-      properties:
-        resultado:
-          type: boolean
-        mensaje:
-          type: string
-        data:
-          type: object
-          properties:
-            codigoTarjeta:
-              type: string
-            tarjeta:
-              type: string
-            nombre:
-              type: string
-            apellido:
-              type: string
-            tipoTarjeta:
-              type: string
-      additionalProperties: false
-
-    cadenaTarjetatokenidDeleteResponse:
+    cadenaTarjetaidDeleteResponse:
       type: object
       properties:
         resultado:
