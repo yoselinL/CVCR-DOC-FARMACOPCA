@@ -1224,6 +1224,10 @@ components:
               type: string
             correo:
               type: string
+            idCooperativa:
+              type: string
+            codigo:
+              type: string
             foto:
               type: string              
       additionalProperties: false
@@ -1241,7 +1245,11 @@ components:
         telefono:
           type: string
         correo:
-          type: string          
+          type: string
+        idCooperativa:
+          type: string
+        codigo:
+          type: string                  
         foto:
           type: string
           format: base64
@@ -1270,6 +1278,10 @@ components:
               type: string
             correo:
               type: string
+            idCooperativa:
+              type: string
+            codigo:
+              type: string              
             foto:
               type: string              
       additionalProperties: false
